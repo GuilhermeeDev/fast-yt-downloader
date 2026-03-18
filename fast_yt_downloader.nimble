@@ -1,8 +1,8 @@
 # Package
 
-version       = "0.1.0"
+version       = "1.0.0"
 author        = "GuilhermeeDev"
-description   = "A new awesome nimble package"
+description   = "Downloader de videos/audios do youtube usando binario de Nim."
 license       = "MIT"
 srcDir        = "src"
 bin           = @["fast_yt_downloader"]
