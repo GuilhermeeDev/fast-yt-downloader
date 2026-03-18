@@ -5,21 +5,20 @@ import std/osproc
 load()
 
 let 
-    file=getEnv("URL_FILE")
+  file=getEnv("URL_FILE")
 
 var 
-    urls: seq[string]
-    i: int
+  urls: seq[string]
 
 proc downloader(url:string) =
+  echo url
   discard execProcess(
-    "yt-dlp",
-    args = ["-f", "bestaudio", "-x", "--audio-format", "mp3", url]
+    "yt-dlp -f bestaudio -x --audio-format mp3 " & url, options = {poEvalCommand}
   )
 
 
 # Urls listaveis por indice
 urls = parserTextFile(file)
-i=0
-for i in urls.len:
-    downloader(urls[i])
+
+for url in urls:
+  downloader(url)
