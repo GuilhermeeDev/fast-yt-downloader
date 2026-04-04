@@ -1,24 +1,12 @@
-import parser
 import dotenv
-import std/os
-import std/osproc
+import ui/tui_functions
 load()
 
-let 
-  file=getEnv("URL_FILE")
+let outputAudio = getEnv("OUTPUT_AUDIO")
+let outputVideo = getEnv("OUTPUT_VIDEO")
+let ytDlpDir = getEnv("YT_DLP_DIR")
 
-var 
-  urls: seq[string]
+proc main() =
+  startTUI(outputAudio, outputVideo, ytDlpDir)
 
-proc downloader(url:string) =
-  echo url
-  discard execProcess(
-    "yt-dlp -f bestaudio -x --audio-format mp3 " & url, options = {poEvalCommand}
-  )
-
-
-# Urls listaveis por indice
-urls = parserTextFile(file)
-
-for url in urls:
-  downloader(url)
+main()
